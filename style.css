@@ -1,0 +1,10 @@
+div {
+    margin: 10px, 25px;
+}
+
+button {
+    margin-right: 10px;
+    width: 88px;
+    border: solid 1px #999;
+    border-radius: 4px;
+}
