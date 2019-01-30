@@ -1,5 +1,10 @@
-div {
-    margin: 10px, 25px;
+body {
+    padding: 10px 25px;
+    background-color: #f9f9f9;
+}
+
+.btn-group {
+    margin-bottom: 10px;
 }
 
 button {
@@ -7,4 +12,16 @@ button {
     width: 88px;
     border: solid 1px #999;
     border-radius: 4px;
+}
+#stockInput, 
+#addStock{
+    margin-left: 10px;
+    border: solid 1px #999;
+    border-radius: 4px;
+}
+
+
+img {
+    max-height: 60px;
+    width: auto;
 }

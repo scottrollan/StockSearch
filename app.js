@@ -1,32 +1,38 @@
-stocksList = ["GOOG", "AMZN", "MSI", "TGT"];
+stocksList = ["AXP", "CMG", "MSI", "TGT"];
 
 
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
     const stock = $(this).attr('data-name');
     const queryURL = `https://api.iextrading.com/1.0/stock/${stock}/batch?types=quote,news,logo&range=1m&last=1`;
+    const stockDiv = $('<div>').addClass('card-body'); //ceate div to hold indivdual stock info
+    $(".card-body").css("border-radius","20px");
 
     $.ajax({
         url: queryURL,
         method: 'GET'
     }).then(function(response) {
-        const stockDiv = $('<div>').addClass('stock'); //ceate div to hold ALL stock info
-        //LOGO BEGIN
+
+
+
         const logoPic = response.logo.url;
-        const logoHolder = $(`<img="${logoPic}" alt="logo`)
-        stockDiv.append(logoHolder);
-        //LOGO END
+        const logoHolder = `<img src="${logoPic}">`; //logo img created
+
         const companyName = response.quote.companyName;  //retrieves and stores name from api
-        const nameHolder = $('<h3>').text(`Company Name: ${companyName}`);//formats stored name into html code
+        const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
+        nameHolder.append(logoHolder); //adds logo img to the end of the company name
         stockDiv.append(nameHolder);  //appends above name into new stock div
-        //repeating above 3 steps for stock symbol
+
+        //repeating above 3 steps (minus logo img append) for stock symbol
         const stockSymbol = response.quote.symbol; //retrieves symbol from api
         const symbolHolder = $('<p>').text(`Stock Symbol: ${stockSymbol}`);
         stockDiv.append(symbolHolder);
-        //repeatin above steps for stock price
+        
+        //repeating above steps for stock price
         const stockPrice = response.quote.latestPrice;
         const priceHolder = $('<p>').text(`Stock Price: ${stockPrice}`);
         stockDiv.append(priceHolder);
+
         //repeating steps for news summary
         const companyNews = response.news[0].summary;
         const summaryHolder = $('<p>').text(`News Headline: ${companyNews}`);
