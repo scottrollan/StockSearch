@@ -1,42 +1,48 @@
 stocksList = ["AXP", "CMG", "MSI", "TGT"];
-
+counter = 0
 
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
     const stock = $(this).attr('data-name');
     const queryURL = `https://api.iextrading.com/1.0/stock/${stock}/batch?types=quote,news,logo&range=1m&last=1`;
-    const stockDiv = $('<div>').addClass('card-body'); //ceate div to hold indivdual stock info
-    $(".card-body").css("border-radius","20px");
 
     $.ajax({
         url: queryURL,
         method: 'GET'
     }).then(function(response) {
 
+        const stockDiv = $('<div>').addClass('card-body'); //ceate div to hold indivdual stock info
 
-
-        const logoPic = response.logo.url;
-        const logoHolder = `<img src="${logoPic}">`; //logo img created
-
+        const logoPic = response.logo.url;//retrieves logo url
+        const logoHolder = `<img src="${logoPic}">    `; //logo img created
         const companyName = response.quote.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
-        nameHolder.append(logoHolder); //adds logo img to the end of the company name
+        nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
         stockDiv.append(nameHolder);  //appends above name into new stock div
 
         //repeating above 3 steps (minus logo img append) for stock symbol
         const stockSymbol = response.quote.symbol; //retrieves symbol from api
-        const symbolHolder = $('<p>').text(`Stock Symbol: ${stockSymbol}`);
+        const symbolHolder = $('<p class="card-text">').text(`Stock Symbol: ${stockSymbol}`);
         stockDiv.append(symbolHolder);
         
         //repeating above steps for stock price
         const stockPrice = response.quote.latestPrice;
-        const priceHolder = $('<p>').text(`Stock Price: ${stockPrice}`);
+        const priceHolder = $('<p class="card-text">').text(`Stock Price: ${stockPrice}`);
         stockDiv.append(priceHolder);
 
-        //repeating steps for news summary
+        //repeating steps for news summary and link
         const companyNews = response.news[0].summary;
-        const summaryHolder = $('<p>').text(`News Headline: ${companyNews}`);
+        const newsLink = response.news[0].url;
+        const summaryHolder = $('<p class="card-text">').text(`News Headline: ${companyNews}   `);
+        const newsBtn = $(`   <a href=${newsLink}>`).text('See Article');
+        summaryHolder.append(newsBtn);
         stockDiv.append(summaryHolder);
+
+        if(counter>0){
+            const dividerLine = $('<br><hr>');
+            stockDiv.append(dividerLine);
+        }
+        counter++;
         $('#stocksView').prepend(stockDiv);
 
     })
@@ -52,7 +58,7 @@ const render = function(){
         const newButton = $('<button>'); 
         newButton.addClass('stock-btn');
         newButton.attr('data-name', stocksList[i]);
-        newButton.text(stocksList[i]);
+        newButton.text(stocksList[i].toUpperCase());
         $('.btn-group').append(newButton);
     }
 }
@@ -64,7 +70,7 @@ const addButton = function(event){
 event.preventDefault();
 const stockInput = $('#stockInput').val().trim();
 stocksList.push(stockInput);
-$('stockInput').val('');
+$('#stockInput').val('');
 render();
 }
 
