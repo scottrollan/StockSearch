@@ -1,6 +1,4 @@
 stocksList = ["AXP", "CMG", "MSI", "TGT"];
-counter = 0;
-$('#stocksView').hide();
 
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
@@ -41,17 +39,6 @@ const displayStockInfo = function(){
         newStockDiv.append(summaryHolder);
 
         $('#stockForm').after(newStockDiv);
-        // $('.card-body').after('<br>')
-
-        // if(counter>0){
-        //     const dividerLine = $('<br><hr>');
-        //     newStockDiv.append(dividerLine);
-        // }
-        // counter++;
-
-        // $('#stocksView').show();
-        // $('#stocksView').prepend(newStockDiv);
-
     })
 }
 
