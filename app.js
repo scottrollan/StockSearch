@@ -1,5 +1,6 @@
 stocksList = ["AXP", "CMG", "MSI", "TGT"];
-counter = 0
+counter = 0;
+$('#stocksView').hide();
 
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
@@ -11,24 +12,25 @@ const displayStockInfo = function(){
         method: 'GET'
     }).then(function(response) {
 
-        const stockDiv = $('<div>').addClass('card-body'); //ceate div to hold indivdual stock info
+        const newStockDiv = $('<div>').addClass('card-body'); //create div to hold indivdual stock info
+
 
         const logoPic = response.logo.url;//retrieves logo url
         const logoHolder = `<img src="${logoPic}">    `; //logo img created
         const companyName = response.quote.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
-        stockDiv.append(nameHolder);  //appends above name into new stock div
+        newStockDiv.append(nameHolder);  //appends above name into new stock div
 
         //repeating above 3 steps (minus logo img append) for stock symbol
         const stockSymbol = response.quote.symbol; //retrieves symbol from api
         const symbolHolder = $('<p class="card-text">').text(`Stock Symbol: ${stockSymbol}`);
-        stockDiv.append(symbolHolder);
+        newStockDiv.append(symbolHolder);
         
         //repeating above steps for stock price
         const stockPrice = response.quote.latestPrice;
         const priceHolder = $('<p class="card-text">').text(`Stock Price: ${stockPrice}`);
-        stockDiv.append(priceHolder);
+        newStockDiv.append(priceHolder);
 
         //repeating steps for news summary and link
         const companyNews = response.news[0].summary;
@@ -36,14 +38,19 @@ const displayStockInfo = function(){
         const summaryHolder = $('<p class="card-text">').text(`News Headline: ${companyNews}   `);
         const newsBtn = $(`   <a href=${newsLink}>`).text('See Article');
         summaryHolder.append(newsBtn);
-        stockDiv.append(summaryHolder);
+        newStockDiv.append(summaryHolder);
 
-        if(counter>0){
-            const dividerLine = $('<br><hr>');
-            stockDiv.append(dividerLine);
-        }
-        counter++;
-        $('#stocksView').prepend(stockDiv);
+        $('#stockForm').after(newStockDiv);
+        // $('.card-body').after('<br>')
+
+        // if(counter>0){
+        //     const dividerLine = $('<br><hr>');
+        //     newStockDiv.append(dividerLine);
+        // }
+        // counter++;
+
+        // $('#stocksView').show();
+        // $('#stocksView').prepend(newStockDiv);
 
     })
 }
@@ -65,7 +72,7 @@ const render = function(){
 
 
 
-//-------Receiving Input for New Buttons----------------//
+//-------Receiving Input to make New Buttons----------------//
 const addButton = function(event){
 event.preventDefault();
 const stockInput = $('#stockInput').val().trim();

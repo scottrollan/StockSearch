@@ -1,27 +1,42 @@
 body {
     padding: 2% 5%;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    background-image: url(images/tweed_@2X.png);
 }
 
 .btn-group {
-    margin-bottom: 10px;
+    margin: 10px 2% 15px 2%;
+
 }
 
 button {
     margin-right: 2%;
-    width: 88px;
-    border: solid 1px #999;
+    width: 92px;
+    border: none;
     border-radius: 4px;
+    background-color: silver;
 }
 #stockInput, 
 #addStock{
     margin-left: 2%;
-    border: solid 1px #999;
+    border: none;
     border-radius: 4px;
+}
+
+#addStock{
+    background-color: silver;
+}
+
+.card-body {
+    background-color: white;
+    margin: 2%;
+    border-radius: 6px;
 }
 
 #stocksView {
     border-radius: 12px;
+    margin: 2%;
+    padding: 2%;
 }
 
 img {
