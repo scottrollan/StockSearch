@@ -4,25 +4,35 @@ body {
     background-image: url(images/tweed_@2X.png);
 }
 
-.btn-group {
-    margin: 10px 2% 15px 2%;
-    max-width: 88vw;
-
+.buttonRow {
+    margin: 10px 0% 15px 2%;
+    max-width: 92vw;
+    height: auto;
+    position: relative;
+    clear: both;
 }
 
 button {
     margin-right: 2%;
+    margin-bottom: 12px;
     width: 92px;
     border: none;
     border-radius: 4px;
     background-color: silver;
+    float: left;
 }
+
+form {
+    clear: both;
+}
+
 #stockInput, 
 #addStock{
-    margin-left: 2%;
+    margin: 10px 2%;
     border: none;
     border-radius: 4px;
 }
+
 
 #addStock{
     background-color: silver;

@@ -1,5 +1,23 @@
 stocksList = ["AXP", "CMG", "MSI", "TGT"];
 
+//-------creating validationList[] of stock symbols available-----//////
+let validationList = [];                                              //
+let validSymbol = '';                                                 //
+const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`;  //
+
+$.ajax({                                                              //
+    url: queryURL2,                                                   //
+    method: 'Get'                                                     //working on
+}).then(function (resSymbol) {                                        //
+    for(i=0; i<resSymbol.length; i++){                                //
+        validSymbol = resSymbol[i].symbol;                            //
+        validationList.push(validSymbol);                             //
+    }                                                                 //
+    return validationList;
+
+})                                                                    //
+
+
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
     const stock = $(this).attr('data-name');
@@ -47,13 +65,13 @@ const displayStockInfo = function(){
 //------------Rendering Button Group to Page------//
 const render = function(){
     //reset button list
-    $(".btn-group").empty();
+    $(".buttonRow").empty();
     for(i=0; i<stocksList.length; i++){
         const newButton = $('<button>'); 
         newButton.addClass('stock-btn');
         newButton.attr('data-name', stocksList[i]);
         newButton.text(stocksList[i].toUpperCase());
-        $('.btn-group').append(newButton);
+        $('.buttonRow').append(newButton);
     }
 }
 
@@ -63,9 +81,16 @@ const render = function(){
 const addButton = function(event){
 event.preventDefault();
 const stockInput = $('#stockInput').val().trim();
-stocksList.push(stockInput);
-$('#stockInput').val('');
+const upperCaseStock = stockInput.toUpperCase();
+if(validationList.includes(upperCaseStock)){
+stocksList.push(upperCaseStock);
 render();
+}
+else{
+    alert(`${stockInput} is not a valid stock symbol`);
+}
+$('#stockInput').val('');
+
 }
 
 
@@ -75,5 +100,5 @@ render();
 //--------------Function Calling --------------//
 
 $('#addStock').on('click', addButton);
-$('.btn-group').on('click','.stock-btn', displayStockInfo);
+$('.buttonRow').on('click','.stock-btn', displayStockInfo);
 render();
