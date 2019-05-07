@@ -17,8 +17,8 @@ $.ajax({
 
 })                                                                    
 
-const disappear = function(){
-    $(this).hide();
+const killDiv = function(){
+    $(this).parent().hide();
 };
 
 //-----Displaying Stock Data after button is clicked-----//
@@ -33,19 +33,21 @@ const displayStockInfo = function(){
         console.log(response)
         const newStockDiv = $('<div>').addClass('card-body'); //create div to hold indivdual stock info
 
-
         const logoPic = response.logo.url;//retrieves logo url
         const logoHolder = $(`<img src="${logoPic}">`).addClass('logo'); //logo img created
         const companyName = response.quote.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
         newStockDiv.append(nameHolder);  //appends above name into new stock div
+        
+        const closeBtn = $('<button>').addClass('killDiv').text("Close").css("float", "right");
+        newStockDiv.append(closeBtn);
 
         //repeating above 3 steps (minus logo img append) for stock symbol
         const stockSymbol = response.quote.symbol; //retrieves symbol from api
         const symbolHolder = $('<p class="card-text">').text(`Stock Symbol: ${stockSymbol}`);
         newStockDiv.append(symbolHolder);
-        
+
         //repeating above steps for stock price
         const stockPrice = response.quote.latestPrice;
         const priceHolder = $('<p class="card-text">').text(`Stock Price: ${stockPrice}`);
@@ -99,7 +101,9 @@ $('#stockInput').val('');
 
 
 //--------------Function Calling --------------//
-$('#test').on('click', disappear);
+$(document).on('click', 'button.killDiv', function(){
+    $(this).parent().hide();
+});
 $('#addStock').on('click', addButton);
 $('.buttonRow').on('click','.stock-btn', displayStockInfo);
 render();

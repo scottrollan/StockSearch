@@ -4,6 +4,9 @@ body {
     background-image: url(images/tweed_@2X.png);
 }
 
+#test {
+    background-color: white;
+}
 .buttonRow {
     margin: 10px 0% 15px 2%;
     max-width: 92vw;

@@ -11,14 +11,17 @@
 <body>
     <!-- Rendered buttons will get dumped here  -->
     <div class="buttonRow"></div>
-    <button id="test">Click to make me disappear</button>
+
     <form id="stockForm">
         <label for="stockInput"></label>
         <input type="text" id="stockInput" autocomplete="off">
     
         <!-- Button triggers new stock to be added -->
         <input id="addStock" type="submit" value="Add a Stock Symbol">
-    </form>
+        </form>
+        <div id="test">
+            <p>See if we can make this div disappear <button class="killDiv">WHAT?</button></p>
+        </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
