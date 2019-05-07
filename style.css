@@ -54,6 +54,20 @@ img {
     width: auto;
 }
 
-.more {
-    display: hidden;
+@media only screen and (max-width: 960px) {
+    body {
+        padding: 5% 5%;
+    }
+
+    button {
+        font-size: 2vw !important;
+        margin-right: 2%;
+        margin-bottom: 12px;
+        width: 12vw;
+        float: left;
+        background-color: #f8f9fa;
+    }
+    .killDiv {
+        transform: translateY(2vh);
+    }
 }
