@@ -67,6 +67,15 @@ img {
         float: left;
         background-color: #f8f9fa;
     }
+    #stockInput, 
+    #addStock{
+    padding-left: 3px;
+    margin: 10px 1% 10px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    float: none;
+}
     .killDiv {
         transform: translateY(2vh);
     }

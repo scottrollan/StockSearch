@@ -80,7 +80,7 @@ const displayStockInfo = function(){
         const companyNews = response.news[0].summary;
         const newsLink = response.news[0].url;
         const summaryHolder = $('<p class="card-text">').text(`News Headline: ${companyNews}`).css("clear", "both");
-        const newsBtn = $(`   <a href=${newsLink}>`).text('See Article');
+        const newsBtn = $(`   <a href=${newsLink}>`).text('See Article').attr('target', 'blank');
         summaryHolder.append(newsBtn);
         newStockDiv.append(summaryHolder);
 
