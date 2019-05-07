@@ -1,22 +1,25 @@
 stocksList = ["AXP", "CMG", "MSI", "TGT"];
 
 //-------creating validationList[] of stock symbols available-----//////
-let validationList = [];                                              //
-let validSymbol = '';                                                 //
-const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`;  //
+let validationList = [];
+let validSymbol = '';
+const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`; 
 
-$.ajax({                                                              //
-    url: queryURL2,                                                   //
-    method: 'Get'                                                     //working on
-}).then(function (resSymbol) {                                        //
-    for(i=0; i<resSymbol.length; i++){                                //
-        validSymbol = resSymbol[i].symbol;                            //
-        validationList.push(validSymbol);                             //
-    }                                                                 //
+$.ajax({
+    url: queryURL2,
+    method: 'Get'
+}).then(function (resSymbol) {                                        
+    for(i=0; i<resSymbol.length; i++){                                
+        validSymbol = resSymbol[i].symbol;                            
+        validationList.push(validSymbol);                             
+    }                                                                 
     return validationList;
 
-})                                                                    //
+})                                                                    
 
+const disappear = function(){
+    $(this).hide();
+};
 
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
@@ -27,12 +30,12 @@ const displayStockInfo = function(){
         url: queryURL,
         method: 'GET'
     }).then(function(response) {
-
+        console.log(response)
         const newStockDiv = $('<div>').addClass('card-body'); //create div to hold indivdual stock info
 
 
         const logoPic = response.logo.url;//retrieves logo url
-        const logoHolder = `<img src="${logoPic}">    `; //logo img created
+        const logoHolder = $(`<img src="${logoPic}">`).addClass('logo'); //logo img created
         const companyName = response.quote.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
@@ -59,7 +62,6 @@ const displayStockInfo = function(){
         $('#stockForm').after(newStockDiv);
     })
 }
-
 
 
 //------------Rendering Button Group to Page------//
@@ -90,7 +92,6 @@ else{
     alert(`${stockInput} is not a valid stock symbol`);
 }
 $('#stockInput').val('');
-
 }
 
 
@@ -98,7 +99,7 @@ $('#stockInput').val('');
 
 
 //--------------Function Calling --------------//
-
+$('#test').on('click', disappear);
 $('#addStock').on('click', addButton);
 $('.buttonRow').on('click','.stock-btn', displayStockInfo);
 render();
