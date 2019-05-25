@@ -5,6 +5,12 @@ let validationList = [];
 let validSymbol = '';
 const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`; 
 
+$(document).ready(function() {
+    setTimeout(function(){
+        $('#buttonMessage').fadeOut(5000);// or fade, css display however you'd like.
+     });
+});
+
 $.ajax({
     url: queryURL2,
     method: 'Get'
@@ -114,7 +120,11 @@ stocksList.push(upperCaseStock);
 render();
 }
 else{
-    alert(`${stockInput} is not a valid stock symbol`);
+    $('#notSymbol').show();
+    setTimeout(function(){
+        $('#notSymbol').fadeOut(2000);// or fade, css display however you'd like.
+     });
+    // alert(`${stockInput} is not a valid stock symbol`);
 }
 $('#stockInput').val('');
 }
