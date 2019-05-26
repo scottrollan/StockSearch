@@ -25,7 +25,7 @@ button {
 #notSymbol {
     color: #f8f9fa;
     font-size: 2vw;
-    transform: translateY(-1vh);
+    /* transform: translateY(-1vh); */
 }
 
 #notSymbol {
