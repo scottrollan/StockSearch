@@ -1,7 +1,7 @@
 body {
-    padding: 2% 12%;
-    /* background-color: #f9f9f9; */
+    background-color: #f9f9f9;
     background-image: url(images/tweed_@2X.png);
+    padding: 2% 12%;
 }
 
 .buttonRow {
@@ -66,12 +66,13 @@ img {
     width: auto;
 }
 
-footer {
+#footer {
+    text-decoration: none;
     position: fixed;
-    left: 0;
-    bottom: 0;
-    color: whitesmoke;
-    margin: 0 auto;
+    left: 12%;
+    bottom: 1%;
+    color: whitesmoke !important;
+    margin: 1% 0;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -102,5 +103,9 @@ footer {
 }
     .killDiv {
         transform: translateY(2vh);
+    }
+ 
+    #footer {
+        left: 5%;
     }
 }

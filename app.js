@@ -26,7 +26,7 @@ $.ajax({
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
     const stock = $(this).attr('data-name');
-    const queryURL = `https://api.iextrading.com/1.0/stock/${stock}/batch?types=quote,news,logo&range=1m&last=1`;
+    const queryURL = `https://cloud.iexapis.com/stock/${stock}/batch?token=pk_110eba9da8c84c0e88d885292085ab63,types=quote,news,logo&range=1m&last=1`;
 
     $.ajax({
         url: queryURL,
