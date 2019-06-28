@@ -66,6 +66,14 @@ img {
     width: auto;
 }
 
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: whitesmoke;
+    margin: 0 auto;
+}
+
 @media only screen and (max-width: 1024px) {
     body {
         padding: 5% 5%;
