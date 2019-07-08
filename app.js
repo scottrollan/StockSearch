@@ -1,4 +1,5 @@
 stocksList = ["AXP", "CMG", "MSI", "TGT"];
+token = "pk_110eba9da8c84c0e88d885292085ab63";
 
 //-------creating validationList[] of stock symbols available-----//////
 let validationList = [];
@@ -26,10 +27,11 @@ $.ajax({
 //-----Displaying Stock Data after button is clicked-----//
 const displayStockInfo = function(){
     const stock = $(this).attr('data-name');
-    const queryURL = `https://cloud.iexapis.com/stock/${stock}/batch?token=pk_110eba9da8c84c0e88d885292085ab63,types=quote,news,logo&range=1m&last=1`;
+    const stockQuery = `https://cloud.iexapis.com/stable/stock/${stock}/quote?token=${token}`;
+    const newsQuery = `https://cloud.iexapis.com/stable/news/${stock}/quote?token=${token}`;
 
     $.ajax({
-        url: queryURL,
+        url: stockQuery,
         method: 'GET'
     }).then(function(response) {
         console.log(response)
@@ -38,9 +40,9 @@ const displayStockInfo = function(){
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
-        const logoPic = response.logo.url;//retrieves logo url
+        const logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;//retrieves logo url
         const logoHolder = $(`<img src="${logoPic}">`).addClass('logo').css('clear', 'both'); //logo img created
-        const companyName = response.quote.companyName;  //retrieves and stores name from api
+        const companyName = response.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
         newStockDiv.append(nameHolder);  //appends above name into new stock div
@@ -51,23 +53,23 @@ const displayStockInfo = function(){
         newStockDiv.append(lessBtn);
 
         //repeating above 3 steps (minus logo img append) for stock symbol
-        const stockSymbol = response.quote.symbol; //retrieves symbol from api
+        const stockSymbol = response.symbol; //retrieves symbol from api
         const symbolHolder = $('<p class="card-text">').text(`Stock Symbol: ${stockSymbol}`);
         newStockDiv.append(symbolHolder);
 
         //repeating above steps for stock price
-        const stockPrice = response.quote.latestPrice;
+        const stockPrice = response.latestPrice;
         const priceHolder = $('<p class="card-text">').text(`Stock Price: ${stockPrice}`);
         newStockDiv.append(priceHolder);
 
         //creating "See More Info" button and function
 
-        const previousClose = response.quote.previousClose;
-        const change = response.quote.change;
-        const changePercent = response.quote.changePercent;
-        const week52High = response.quote.week52High;
-        const week52Low = response.quote.week52Low;
-        const ytdChange = response.quote.ytdChange;
+        const previousClose = response.previousClose;
+        const change = response.change;
+        const changePercent = response.changePercent;
+        const week52High = response.week52High;
+        const week52Low = response.week52Low;
+        const ytdChange = response.ytdChange;
         const prevHolder = $('<p class="card-text more">').text(`Previous Close: ${previousClose}`).hide();
         const changeHolder = $('<p class="card-text more">').text(`Change: ${change}`).hide();
         const percentHolder = $('<p class="card-text more">').text(`Change Percent: ${changePercent}`).hide();
@@ -81,17 +83,24 @@ const displayStockInfo = function(){
         newStockDiv.append(lowHolder);
         newStockDiv.append(ytdHolder);
 
-
-        //repeating steps for news summary and link
-        const companyNews = response.news[0].summary;
-        const newsLink = response.news[0].url;
+        $.ajax({
+            url: newsQuery,
+            method: 'GET'
+        }).then(function(nResponse) {
+    
+        const companyNews = nResponse[0].headline;
+        const newsLink = nResponse[0].url;
         const summaryHolder = $('<p class="card-text">').text(`News Headline: ${companyNews}`).css("clear", "both");
         const newsBtn = $(`   <a href=${newsLink}>`).text('See Article').attr('target', '_blank');
         summaryHolder.append(newsBtn);
         newStockDiv.append(summaryHolder);
+    
+        });
 
         $('#stockForm').after(newStockDiv);
     })
+    //repeating steps for news summary and link
+
 }
 
 

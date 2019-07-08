@@ -2,6 +2,7 @@ body {
     background-color: #f9f9f9;
     background-image: url(images/tweed_@2X.png);
     padding: 2% 12%;
+    margin-bottom: 5%;
 }
 
 .buttonRow {
@@ -68,10 +69,6 @@ img {
 
 #footer {
     text-decoration: none;
-    position: fixed;
-    left: 12%;
-    bottom: 1%;
-    color: whitesmoke !important;
     margin: 1% 0;
 }
 
