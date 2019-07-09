@@ -67,6 +67,10 @@ img {
     width: auto;
 }
 
+.newsPic {
+    height: 50%;
+}
+
 #footer {
     text-decoration: none;
     margin: 1% 0;

@@ -28,20 +28,20 @@ $.ajax({
 const displayStockInfo = function(){
     const stock = $(this).attr('data-name');
     const stockQuery = `https://cloud.iexapis.com/stable/stock/${stock}/quote?token=${token}`;
-    const newsQuery = `https://cloud.iexapis.com/stable/news/${stock}/quote?token=${token}`;
+    const newsQuery = `https://cloud.iexapis.com/stable/stock/${stock}/news?token=${token}`;
+    const newStockDiv = $('<div>').addClass('card-body'); //create div to hold indivdual stock info
 
     $.ajax({
         url: stockQuery,
         method: 'GET'
     }).then(function(response) {
         console.log(response)
-        const newStockDiv = $('<div>').addClass('card-body'); //create div to hold indivdual stock info
         
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
         const logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;//retrieves logo url
-        const logoHolder = $(`<img src="${logoPic}">`).addClass('logo').css('clear', 'both'); //logo img created
+        const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('clear', 'both'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
@@ -63,7 +63,6 @@ const displayStockInfo = function(){
         newStockDiv.append(priceHolder);
 
         //creating "See More Info" button and function
-
         const previousClose = response.previousClose;
         const change = response.change;
         const changePercent = response.changePercent;
@@ -90,22 +89,24 @@ const displayStockInfo = function(){
     
         const companyNews = nResponse[0].headline;
         const newsLink = nResponse[0].url;
-        const summaryHolder = $('<p class="card-text">').text(`News Headline: ${companyNews}`).css("clear", "both");
-        const newsBtn = $(`   <a href=${newsLink}>`).text('See Article').attr('target', '_blank');
+        const picURL = nResponse[0].image;
+        const summaryHolder = $(`<p class="card-text"> >`).text(`News Headline: ${companyNews}`).css("clear", "both");
+        const newsBtn = $(`<a href=${newsLink}>`).text('  See Article  ').attr('target', '_blank');
+        // const newsPic = $(`<img src=${picURL} class="newsPic" alt=''>`) //.hide();
         summaryHolder.append(newsBtn);
+        // summaryHolder.append(newsPic);        
         newStockDiv.append(summaryHolder);
     
         });
 
         $('#stockForm').after(newStockDiv);
     })
-    //repeating steps for news summary and link
 
 }
 
 
 //------------Rendering Button Group to Page------//
-const render = function(){
+const renderButtons = function(){
     //reset button list
     $(".buttonRow").empty();
     for(i=0; i<stocksList.length; i++){
@@ -126,7 +127,7 @@ const stockInput = $('#stockInput').val().trim();
 const upperCaseStock = stockInput.toUpperCase();
 if(validationList.includes(upperCaseStock)){
 stocksList.push(upperCaseStock);
-render();
+renderButtons();
 }
 else{
     $('#notSymbol').show();
@@ -158,4 +159,4 @@ $(document).on('click', '.killDiv', function(){
 });
 $('#addStock').on('click', addButton);
 $('.buttonRow').on('click','.stock-btn', displayStockInfo);
-render();
+renderButtons();
