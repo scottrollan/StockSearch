@@ -1,4 +1,4 @@
-stocksList = ["AXP", "CMG", "MSI", "TGT"];
+stocksList = ["AXP", "CMG", "MSI", "TGT", "T", "AMZN", "GOOG", "AAPL"];
 token = "pk_110eba9da8c84c0e88d885292085ab63";
 
 //-------creating validationList[] of stock symbols available-----//////
