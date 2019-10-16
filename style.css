@@ -7,7 +7,6 @@ body {
 
 .buttonRow {
     margin-bottom: 15px;
-    max-width: 70vw;
     height: auto;
     position: relative;
 }
