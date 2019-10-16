@@ -14,6 +14,7 @@ body {
 }
 
 button {
+    text-align: center;
     font-size: 1vw !important;
     margin-right: 2%;
     margin-bottom: 12px;
@@ -32,6 +33,10 @@ button {
 #notSymbol {
     display: none;
     transform: translateY(-3vh)
+}
+
+.logo {
+    margin-left: 10px;
 }
 
 form {
