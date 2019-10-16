@@ -1,15 +1,18 @@
 body {
     background-color: #f9f9f9;
     background-image: url(images/tweed_@2X.png);
-    padding: 2% 12%;
-    margin-bottom: 5%;
+    padding: 5% 15%;
+    /* margin-bottom: 5%; */
 }
 
 .buttonRow {
-    margin: 10px 2% 15px 0;
-    max-width: 92vw;
+    margin-bottom: 15px;
+    max-width: 70vw;
     height: auto;
     position: relative;
+}
+
+.buttonRow:after {
     clear: both;
 }
 
@@ -18,21 +21,22 @@ button {
     font-size: 1vw !important;
     margin-right: 2%;
     margin-bottom: 12px;
-    width: 4.6vw;
+    width: auto;
     float: left;
-    background-color: #f8f9fa;
+    padding: 5px 10px;
+    background-color: #f8f9fa
 }
 
 #buttonMessage,
 #notSymbol {
     color: #f8f9fa;
     font-size: 2vw;
-    /* transform: translateY(-1vh); */
+    line-height: 2vw;
 }
 
 #notSymbol {
     display: none;
-    transform: translateY(-3vh)
+    /* transform: translateY(-3vh) */
 }
 
 .logo {
@@ -95,8 +99,9 @@ img {
         background-color: #f8f9fa;
     }
     #notSymbol {
-        transform: translate(2vw, 1vh);
+        /* transform: translate(2vw, 1vh); */
         font-size: 3vw;
+        line-height: 3vw;
     }
     #stockInput, 
     #addStock{
