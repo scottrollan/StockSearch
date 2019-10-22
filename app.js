@@ -44,7 +44,7 @@ const displayStockInfo = function(){
         const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('clear', 'both'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
-        nameHolder.prepend(logoHolder); //adds logo img to the end of the company name
+        nameHolder.prepend(logoHolder); //adds logo img to the front of the company name
         newStockDiv.append(nameHolder);  //appends above name into new stock div
 
         const moreBtn = $('<button>').addClass('btn btn-outline-info seeMore').text('See More').css("float", "right");
