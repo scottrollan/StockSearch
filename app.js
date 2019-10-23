@@ -41,10 +41,10 @@ const displayStockInfo = function(){
         newStockDiv.append(closeBtn);
 
         let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
-        if(width(logoPic) != 0) {
-            console.log("Logo width is " + logoPic.width());
+        if(logoPic) {
+            console.log("Logo appears to be valid");
         } else {
-            console.log("There is now width");
+            console.log("NO LOGO FILE!");
         }
 
         const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('clear', 'both'); //logo img created
