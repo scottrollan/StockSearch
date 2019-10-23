@@ -41,7 +41,7 @@ const displayStockInfo = function(){
         newStockDiv.append(closeBtn);
 
         let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
-        if($.logoPic.width() != 0) {
+        if(width(logoPic) != 0) {
             console.log("Logo width is " + logoPic.width());
         } else {
             console.log("There is now width");
