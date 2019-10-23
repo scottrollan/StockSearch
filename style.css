@@ -39,7 +39,7 @@ button {
 }
 
 .logo {
-    margin-right: 10px;
+    margin: inherit 10px 15px inherit;
 }
 
 form {
