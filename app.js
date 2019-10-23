@@ -41,6 +41,7 @@ const displayStockInfo = function(){
         newStockDiv.append(closeBtn);
 
         let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;//retrieves logo url
+        console.log(logoPic);
 
         const logoHolder = $(`<img src=${logoPic} alt='./images/iex.png'>`).addClass('logo').css('clear', 'both'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
