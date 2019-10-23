@@ -40,18 +40,7 @@ const displayStockInfo = function(){
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
-        let logoPic = '';
-        
-        $.get(`https://storage.googleapis.com/iex/api/logos/${stock}.png`)
-            .done(function() { 
-                logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
-         
-            }).fail(function() { 
-                logoPic = './images/iex.png';
-            })
-        
-        
-        console.log(logoPic);
+        let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
 
         const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('clear', 'both'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
