@@ -50,7 +50,7 @@ const displayStockInfo = function(){
         const companyName = response.companyName;  //retrieves and stores name from api
         const exchange = response.primaryExchange;
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
-        const exchangeHolder = $('<p class="card-text">').text(`on ${exchange}`);
+        const exchangeHolder = $('<p class="card-text">').text(`on ${exchange}`).css('font-size', '14px');
         nameHolder.append(exchangeHolder);
         newStockDiv.append(nameHolder);  //appends above name into new stock div
 
