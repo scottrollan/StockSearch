@@ -40,20 +40,15 @@ const displayStockInfo = function(){
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
-        let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;//retrieves logo url
+        let logoPic = '';
         
-        $.ajax({
-            url:`https://storage.googleapis.com/iex/api/logos/${stock}.png`,
-            type:'HEAD',
-            error: function()
-            {
-                logoPic = './images/iex.png';
-            },
-            success: function()
-            {
+        $.get(`https://storage.googleapis.com/iex/api/logos/${stock}.png`)
+            .done(function() { 
                 logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
-            }
-        });
+         
+            }).fail(function() { 
+                logoPic = './images/iex.png';
+            })
         
         
         console.log(logoPic);
