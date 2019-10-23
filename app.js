@@ -41,13 +41,14 @@ const displayStockInfo = function(){
         newStockDiv.append(closeBtn);
 
         let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
+        console.log(logoPic);
         if(logoPic) {
             console.log("Logo appears to be valid");
         } else {
             console.log("NO LOGO FILE!");
         }
 
-        const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('clear', 'both'); //logo img created
+        const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('background-image', './images/iex.png'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the front of the company name
