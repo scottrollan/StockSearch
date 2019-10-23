@@ -40,7 +40,7 @@ const displayStockInfo = function(){
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
-        let logoPic = './images/iex.png';//retrieves logo url
+        let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;//retrieves logo url
         
         $.ajax({
             url:`https://storage.googleapis.com/iex/api/logos/${stock}.png`,
