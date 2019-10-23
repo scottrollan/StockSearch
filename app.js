@@ -40,13 +40,15 @@ const displayStockInfo = function(){
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
-        let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
-       
+        const logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
+        const logoHolder = $(`<img src=${logoPic} onerror='this.src="./images/iex.png"' />`).addClass('logo'); //logo img created
+        const exchange = response.primaryExchange;
+        const exchangeHolder = $('<p class="card-text">').text(exchange);
+        logoHolder.append(exchangeHolder);
+        newStockDiv.append(logoHolder); //adds logo img to the front of the company name
 
-        const logoHolder = $(`<img src=${logoPic} onerror='this.src="./images/iex.png"' />`).addClass('logo').css('float', 'none'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
-        nameHolder.prepend(logoHolder); //adds logo img to the front of the company name
         newStockDiv.append(nameHolder);  //appends above name into new stock div
 
         const moreBtn = $('<button>').addClass('btn btn-outline-info seeMore').text('See More').css("float", "right");
@@ -54,9 +56,6 @@ const displayStockInfo = function(){
         const lessBtn = $('<button>').addClass('btn btn-outline-info seeLess').text('See Less').css("float", "right").hide();
         newStockDiv.append(lessBtn);
 
-        const exchange = response.primaryExchange;
-        const exchangeHolder = $('<p class="card-text">').text(exchange);
-        newStockDiv.append(exchangeHolder);
 
         //repeating above 3 steps (minus logo img append) for stock symbol
         const stockSymbol = response.symbol; //retrieves symbol from api

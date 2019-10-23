@@ -39,7 +39,9 @@ button {
 }
 
 .logo {
-    margin: inherit 10px 15px inherit;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 14px;
 }
 
 form {
@@ -103,9 +105,7 @@ img {
     background-color: #f8f9fa;
     float: none;
     }
-    .logo {
-        margin-right: 40%;
-    }
+
     .killDiv {
         transform: translateY(2vh);
     }
