@@ -42,13 +42,16 @@ const displayStockInfo = function(){
 
         const logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
         const logoHolder = $(`<img src=${logoPic} onerror='this.src="./images/iex.png"' />`).addClass('logo'); //logo img created
-        const exchange = response.primaryExchange;
-        const exchangeHolder = $('<p class="card-text">').text(exchange);
-        logoHolder.append(exchangeHolder);
         newStockDiv.append(logoHolder); //adds logo img to the front of the company name
 
+
+
+
         const companyName = response.companyName;  //retrieves and stores name from api
+        const exchange = response.primaryExchange;
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
+        const exchangeHolder = $('<p class="card-text">').text(`on ${exchange}`);
+        nameHolder.append(exchangeHolder);
         newStockDiv.append(nameHolder);  //appends above name into new stock div
 
         const moreBtn = $('<button>').addClass('btn btn-outline-info seeMore').text('See More').css("float", "right");
