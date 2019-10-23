@@ -40,10 +40,25 @@ const displayStockInfo = function(){
         const closeBtn = $('<button>').addClass('killDiv btn btn-outline-info').text("Close").css("float", "right");
         newStockDiv.append(closeBtn);
 
-        let logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;//retrieves logo url
+        let logoPic = './images/iex.png';//retrieves logo url
+        
+        $.ajax({
+            url:`https://storage.googleapis.com/iex/api/logos/${stock}.png`,
+            type:'HEAD',
+            error: function()
+            {
+                logoPic = './images/iex.png';
+            },
+            success: function()
+            {
+                logoPic = `https://storage.googleapis.com/iex/api/logos/${stock}.png`;
+            }
+        });
+        
+        
         console.log(logoPic);
 
-        const logoHolder = $(`<img src=${logoPic} alt='./images/iex.png'>`).addClass('logo').css('clear', 'both'); //logo img created
+        const logoHolder = $(`<img src=${logoPic} alt=''>`).addClass('logo').css('clear', 'both'); //logo img created
         const companyName = response.companyName;  //retrieves and stores name from api
         const nameHolder = $('<h3 class="card-title">').text(`${companyName}   `);//formats stored name into html code
         nameHolder.prepend(logoHolder); //adds logo img to the front of the company name
