@@ -102,7 +102,10 @@ img {
     border-radius: 4px;
     background-color: #f8f9fa;
     float: none;
-}
+    }
+    .logo {
+        margin-right: 40%;
+    }
     .killDiv {
         transform: translateY(2vh);
     }
