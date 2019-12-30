@@ -127,6 +127,7 @@ const renderButtons = function(){
         newButton.attr('data-name', stocksList[i].symbol);
         newButton.text(stocksList[i].symbol.toUpperCase());
         $('.buttonRow').append(newButton);
+        console.log(stocksList[i].comapany);
     }
 }
 
