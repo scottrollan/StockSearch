@@ -17,7 +17,10 @@ $.ajax({
     method: 'Get'
 }).then(function (resSymbol) {                                        
     for(i=0; i<resSymbol.length; i++){                                
-        validSymbol = resSymbol[i].symbol;                            
+        validSymbol = {
+            symbol: resSymbol[i].symbol,
+            company: resSymbol[i].companyName,
+        }                           
         validationList.push(validSymbol);                             
     }                                                                 
     return validationList;
@@ -121,8 +124,8 @@ const renderButtons = function(){
     for(i=0; i<stocksList.length; i++){
         const newButton = $('<button>').addClass("btn btn-info"); 
         newButton.addClass('stock-btn');
-        newButton.attr('data-name', stocksList[i]);
-        newButton.text(stocksList[i].toUpperCase());
+        newButton.attr('data-name', stocksList[i].symbol);
+        newButton.text(stocksList[i].symbol.toUpperCase());
         $('.buttonRow').append(newButton);
     }
 }
