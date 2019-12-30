@@ -21,6 +21,7 @@ button {
     font-size: calc(16px + .4vw);
     width: auto;
     padding: 5px 12px;
+    margin: 3px;
     background-color: #f8f9fa;
 }
 
