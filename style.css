@@ -10,7 +10,7 @@ body {
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     align-content: flex-start;
     position: relative;
@@ -21,7 +21,7 @@ button {
     font-size: calc(16px + .4vw);
     width: auto;
     padding: 5px 12px;
-    margin: 3px;
+    margin: 4px 6px;
     background-color: #f8f9fa;
 }
 
