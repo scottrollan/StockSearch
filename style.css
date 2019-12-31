@@ -24,6 +24,24 @@ button {
     margin: 4px 6px;
     background-color: #f8f9fa;
 }
+.stock-btn {
+    position: relative;
+}
+.stock-btn .revealCompany {
+    visibility: hidden;
+    position: absolute;
+    top: -5px;
+    left: -50%;
+    z-index: 2;
+    background-color: #f8f9fa;
+    color: #4a4a4a;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #4a4a4a;
+}
+.stock-btn:hover .revealCompany {
+    visibility: visible;
+}
 
 #buttonMessage,
 #notSymbol {
