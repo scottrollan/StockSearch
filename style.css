@@ -7,16 +7,12 @@ body {
     color: darkmagenta;
 }
 .pantalla {
-    width: 400px;
-    max-width: 90%;
+    width: 100%;
     height: 46px;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: calc(45% - 200px);
-    border-radius: 12px;
+    left: 0;
     background-color: rgba(248, 249, 250, 0.3);
-    margin: 5px 5%;
-    padding: 8px;
 }
 
 .link {
@@ -42,12 +38,14 @@ button {
     background-color: #f8f9fa;
 }
 .stock-btn .revealCompany {
+    font-family: 'Orbitron', sans-serif;
     visibility: hidden;
     width: 400px;
-    position: absolute;
-    top: -65px;
+    position: fixed;
+    top: 12px;
     left: calc(50% - 200px);
-    color: #f8f9fa;
+    /* color: #f8f9fa; */
+    color: #c4f327;
 }
 .stock-btn:hover .revealCompany {
     visibility: visible;
