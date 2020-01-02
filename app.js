@@ -1,7 +1,7 @@
 stocksList = [
   { symbol: "HD", company: "The Home Depot, Inc." },
   { symbol: "UPS", company: "United Parcel Service, Inc." },
-  { symbol: "KO", company: "MThe Coca-Cola Co. " },
+  { symbol: "KO", company: "The Coca-Cola Co. " },
   { symbol: "DAL", company: "Delta Air Lines, Inc." },
   { symbol: "SO", company: "The Southern Co. " },
   { symbol: "GPC", company: "Genuine Parts Co." },
