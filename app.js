@@ -1,13 +1,13 @@
 stocksList = [
-  { symbol: "AXP", company: "American Express Co." },
-  { symbol: "CMG", company: "Chipotle Mexican Grill, Inc." },
-  { symbol: "MSI", company: "Motorola Solutions, Inc." },
-  { symbol: "TGT", company: "Target Corp." },
-  { symbol: "T", company: "AT&T, Inc." },
-  { symbol: "AMZN", company: "Amazon.com, Inc." },
-  { symbol: "GOOG", company: "Alphabet, Inc." },
-  { symbol: "AAPL", company: "Apple, Inc." },
-  { symbol: "MCD", company: "McDonald's Corp." }
+  { symbol: "HD", company: "The Home Depot, Inc." },
+  { symbol: "UPS", company: "United Parcel Service, Inc." },
+  { symbol: "KO", company: "MThe Coca-Cola Co. " },
+  { symbol: "DAL", company: "Delta Air Lines, Inc." },
+  { symbol: "SO", company: "The Southern Co. " },
+  { symbol: "GPC", company: "Genuine Parts Co." },
+  { symbol: "WRK", company: "WestRock Co. " },
+  { symbol: "NCR", company: "NCR Corp." },
+  { symbol: "ICE", company: "Intercontinental Exchange, Inc." }
 ];
 token = "pk_110eba9da8c84c0e88d885292085ab63";
 
