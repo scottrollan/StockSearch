@@ -16,10 +16,16 @@ let validationList = [];
 let validSymbol = "";
 const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`;
 
-$(document).ready(function() {
-  // $(".buttonRow").addClass('pantalla')
-  // $(".buttonRow").append('<div class="sponsor">Data provided by <a class="link" href="https://iexcloud.io" target="_blank">IEX Cloud</a></div>')
-});
+//define hover effect function for stock buttons to reveal company name //
+$(document).ready(function(){
+    $(".buttonRow").on("mouseenter", ".stock-btn", function(event){
+        const company = event.target.value;
+      $(".pantalla").text(company);
+    });
+    $(".stock-btn").mouseleave(function(){
+      $(".pantalla").text("");
+    });
+  });
 
 $.ajax({
   url: queryURL2,
@@ -157,10 +163,9 @@ const renderButtons = function() {
     const newButton = $("<button>").addClass("btn btn-info");
     newButton.addClass("stock-btn");
     newButton.attr("data-name", stocksList[i].symbol);
+    newButton.attr("value", stocksList[i].company);
     newButton.text(stocksList[i].symbol.toUpperCase());
-    newButton.prepend(
-      `<span class="revealCompany">${stocksList[i].company}</span>`
-    );
+
     $(".buttonRow").append(newButton);
   }
 };
@@ -172,7 +177,7 @@ const addButton = function(event) {
     .val()
     .trim();
   const upperCaseStock = stockInput.toUpperCase();
-  let searchSymbol = validationList.find(
+  let searchSymbol = validationList.find( //returns undefined if stock symbol absent from list, returns object if present
     valSym => valSym.symbol === upperCaseStock
   );
   $("#stockInput").val("");
@@ -186,11 +191,13 @@ const addButton = function(event) {
   } else {
     $("#stockInput").val("");
     $("#stockInput").addClass("redFont");
-    $("#stockInput").attr(
-        "placeholder",
-        `"${stockInput}" is not a valid symbol`
+    $(".pantalla").text(
+        `"${upperCaseStock}" is not a valid symbol`);
+    $("#stockInput").attr
+        ("placeholder", `"${stockInput}" is not a valid symbol`
       );
     setTimeout(function() {
+        $(".pantalla").text("");
         $("#stockInput").removeClass("redFont");
         $("#stockInput").attr("placeholder", "enter stock symbol");
     },2000);
