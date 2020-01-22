@@ -14,7 +14,7 @@ token = "pk_110eba9da8c84c0e88d885292085ab63";
 //-------creating validationList[] of stock symbols available-----//////
 let validationList = [];
 let validSymbol = "";
-const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`;
+const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
 
 //define hover effect function for stock buttons to reveal company name //
 $(document).ready(function(){
@@ -28,18 +28,32 @@ $(document).ready(function(){
     });
   });
 
+const assignChange = function(array) {
+  for (i =0; i < array.length; i++) {
+    $.ajax({
+      url: `https://cloud.iexapis.com/stable/stock/${array[i].symbol}/quote?token=${token}`,
+      method: "GET"
+    }).then(function(response) {
+      array[i].changePercent = response.changePercent
+    })
+  }
+}
+
+
 $.ajax({
-  url: queryURL2,
+  url: symbolQuery,
   method: "Get"
 }).then(function(resSymbol) {
   for (i = 0; i < resSymbol.length; i++) {
     validSymbol = {
       symbol: resSymbol[i].symbol,
-      company: resSymbol[i].name
+      company: resSymbol[i].name,
+      changePercent: 0
     };
     validationList.push(validSymbol);
   }
   return validationList;
+  assignChange(validationList);
 });
 
 //-----Displaying Stock Data after button is clicked-----//
@@ -151,7 +165,6 @@ const displayStockInfo = function() {
       // summaryHolder.append(newsPic);
       newStockDiv.append(summaryHolder);
     });
-
     $("#stockForm").after(newStockDiv);
   });
 };
