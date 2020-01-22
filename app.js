@@ -20,8 +20,8 @@ const queryURL2 = `https://api.iextrading.com/1.0/ref-data/symbols`;
 $(document).ready(function(){
     $(".buttonRow").on("mouseenter", ".stock-btn", function(event){
         const company = event.target.value;
-        const percent = event.target.percent;
-      $(".pantalla").text(company + " " + percent + "%");
+        // const percent = event.target.percent;
+      $(".pantalla").text(company);
     });
     $(".stock-btn").mouseleave(function(){
       $(".pantalla").text("");
@@ -164,8 +164,7 @@ const renderButtons = function() {
     const newButton = $("<button>").addClass("btn btn-info");
     newButton.addClass("stock-btn");
     newButton.attr("data-name", stocksList[i].symbol);
-    newButton.attr("value", stocksList[i].company);
-    newButton.attr('percent', stockList[i].changePercent);
+    newButton.attr("value", stocksList[i].company + " ..." +stocksList[i].changePercent + "%");
     newButton.text(stocksList[i].symbol.toUpperCase());
 
     $(".buttonRow").append(newButton);
