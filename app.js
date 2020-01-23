@@ -169,7 +169,7 @@ const renderButtons = function() {
       url: `https://cloud.iexapis.com/stable/stock/${stocksList[i].symbol}/quote?token=${token}`,
       method: "GET"
     }).then(function(response) {
-      newButton.attr("value", response.company + " ..." + response.changePercent + "%");
+      newButton.attr("value", response.companyName + " ..." + response.changePercent + "%");
     })
     $(".buttonRow").append(newButton);
   }
