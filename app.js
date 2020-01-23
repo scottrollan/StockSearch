@@ -42,7 +42,7 @@ $.ajax({
   }
   for (i =0; i < validationList.length; i++) {
     $.ajax({
-      url: `https://cloud.iexapis.com/stable/stock/${array[i].symbol}/quote?token=${token}`,
+      url: `https://cloud.iexapis.com/stable/stock/${validationList[i].symbol}/quote?token=${token}`,
       method: "GET"
     }).then(function(response) {
       validationList[i].changePercent = response.changePercent
