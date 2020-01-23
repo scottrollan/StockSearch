@@ -40,15 +40,6 @@ $.ajax({
     };
     validationList.push(validSymbol);
   }
-  for (i =0; i < validationList.length; i++) {
-    $.ajax({
-      url: `https://cloud.iexapis.com/stable/stock/${validationList[i].symbol}/quote?token=${token}`,
-      method: "GET"
-    }).then(function(response) {
-      validationList[i].changePercent = response.changePercent
-    })
-  }
-  console.log(validationList);
   return validationList;
 });
 
@@ -173,9 +164,13 @@ const renderButtons = function() {
     const newButton = $("<button>").addClass("btn btn-info");
     newButton.addClass("stock-btn");
     newButton.attr("data-name", stocksList[i].symbol);
-    newButton.attr("value", stocksList[i].company + " ..." +stocksList[i].changePercent + "%");
     newButton.text(stocksList[i].symbol.toUpperCase());
-
+    $.ajax({
+      url: `https://cloud.iexapis.com/stable/stock/${stocksList[i].symbol}/quote?token=${token}`,
+      method: "GET"
+    }).then(function(response) {
+      newButton.attr("value", response.company + " ..." + response.changePercent + "%");
+    })
     $(".buttonRow").append(newButton);
   }
 };
