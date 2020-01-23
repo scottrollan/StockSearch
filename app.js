@@ -20,9 +20,10 @@ const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
 $(document).ready(function(){
     $(".buttonRow").on("mouseenter", ".stock-btn", function(event){
         const company = event.target.value;
-        // const percent = event.target.percent;
-      $(".pantalla").text(company);
-    });
+        const percent = event.target.changePercent;
+        $(".pantalla").text(company + "..." + percent);
+        // $(".pantalla").html(`<button>${company}...${percent}`);
+      });
     $(".stock-btn").mouseleave(function(){
       $(".pantalla").text("");
     });
@@ -165,12 +166,18 @@ const renderButtons = function() {
     newButton.addClass("stock-btn");
     newButton.attr("data-name", stocksList[i].symbol);
     newButton.text(stocksList[i].symbol.toUpperCase());
+    newButton.attr("value", stocksList[i].company);
     $.ajax({
       url: `https://cloud.iexapis.com/stable/stock/${stocksList[i].symbol}/quote?token=${token}`,
       method: "GET"
     }).then(function(response) {
-      newButton.attr("value", response.companyName + " ..." + response.changePercent + "%");
+       percentNumber = response.changePercent
     })
+    if (percentNumber < 0) {
+      newButton.attr("changePercent", percentNumber + "%")
+    }else{
+      newButton.attr("changePercent", "+" = percentNumber + "%")
+    }
     $(".buttonRow").append(newButton);
   }
 };
