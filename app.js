@@ -169,8 +169,8 @@ const renderButtons = function() {
       method: "GET"
     }).then(function(response) {
       newButton.attr("value", response.companyName + "..." + response.changePercent + "%");
-    $(".buttonRow").append(newButton);
     })
+    $(".buttonRow").append(newButton);
   }
 }
 
