@@ -172,13 +172,13 @@ const renderButtons = function() {
       method: "GET"
     }).then(function(response) {
        percentNumber = response.changePercent
-       return percentNumber
-    })
-    if (percentNumber < 0) {
-      newButton.attr("changePercent", percentNumber + "%")
+       newButton.attr("changePercent", percentNumber + "%")
+      })
+    // if (percentNumber < 0) {
+      // newButton.attr("changePercent", percentNumber + "%")
     // }else{
     //   newButton.attr("changePercent", percentNumber)
-    }
+    // }
     $(".buttonRow").append(newButton);
   }
 };
