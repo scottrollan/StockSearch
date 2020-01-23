@@ -176,7 +176,7 @@ const renderButtons = function() {
     if (percentNumber < 0) {
       newButton.attr("changePercent", percentNumber + "%")
     }else{
-      newButton.attr("changePercent", "+" + percentNumber + "%")
+      newButton.attr("changePercent", `+${percentNumber}%`)
     }
     $(".buttonRow").append(newButton);
   }
