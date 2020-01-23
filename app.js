@@ -172,6 +172,7 @@ const renderButtons = function() {
       method: "GET"
     }).then(function(response) {
        percentNumber = response.changePercent
+       return percentNumber
     })
     if (percentNumber < 0) {
       newButton.attr("changePercent", percentNumber + "%")
