@@ -28,18 +28,6 @@ $(document).ready(function(){
     });
   });
 
-const assignChange = function(array) {
-  for (i =0; i < array.length; i++) {
-    $.ajax({
-      url: `https://cloud.iexapis.com/stable/stock/${array[i].symbol}/quote?token=${token}`,
-      method: "GET"
-    }).then(function(response) {
-      array[i].changePercent = response.changePercent
-    })
-  }
-}
-
-
 $.ajax({
   url: symbolQuery,
   method: "Get"
@@ -52,8 +40,16 @@ $.ajax({
     };
     validationList.push(validSymbol);
   }
+  for (i =0; i < validationList.length; i++) {
+    $.ajax({
+      url: `https://cloud.iexapis.com/stable/stock/${array[i].symbol}/quote?token=${token}`,
+      method: "GET"
+    }).then(function(response) {
+      validationList[i].changePercent = response.changePercent
+    })
+  }
+
   return validationList;
-  assignChange(validationList);
 });
 
 //-----Displaying Stock Data after button is clicked-----//
