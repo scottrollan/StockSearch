@@ -48,7 +48,7 @@ $.ajax({
       validationList[i].changePercent = response.changePercent
     })
   }
-
+  console.log(validationList);
   return validationList;
 });
 
