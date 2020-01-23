@@ -19,10 +19,8 @@ const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
 //define hover effect function for stock buttons to reveal company name //
 $(document).ready(function(){
     $(".buttonRow").on("mouseenter", ".stock-btn", function(event){
-        const company = event.target.value;
-        const percent = event.target.changePercent;
-        $(".pantalla").text(company + "..." + percent);
-        // $(".pantalla").html(`<button>${company}...${percent}`);
+        const companyInfo = event.target.value;
+        $(".pantalla").text(companyInfo);
       });
     $(".stock-btn").mouseleave(function(){
       $(".pantalla").text("");
@@ -172,8 +170,9 @@ const renderButtons = function() {
     }).then(function(response) {
       newButton.attr("value", stocksList[i].company + "..." + response.changePercent + "%");
     $(".buttonRow").append(newButton);
-  })
-};
+    })
+  }
+}
 
 //-------Receiving Input to make New Buttons----------------//
 const addButton = function(event) {
