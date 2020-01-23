@@ -11,7 +11,7 @@ body {
     color: #c4f327;
     text-align: center;
     width: 70%;
-    height: 46px;
+    min-height: 46px;
     margin: 0 15%;
     padding: 10px;
     border-radius: 8px;
