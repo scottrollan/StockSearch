@@ -166,21 +166,13 @@ const renderButtons = function() {
     newButton.addClass("stock-btn");
     newButton.attr("data-name", stocksList[i].symbol);
     newButton.text(stocksList[i].symbol.toUpperCase());
-    newButton.attr("value", stocksList[i].company);
     $.ajax({
       url: `https://cloud.iexapis.com/stable/stock/${stocksList[i].symbol}/quote?token=${token}`,
       method: "GET"
     }).then(function(response) {
-       percentNumber = response.changePercent
-       newButton.attr("changePercent", percentNumber + "%")
-      })
-    // if (percentNumber < 0) {
-      // newButton.attr("changePercent", percentNumber + "%")
-    // }else{
-    //   newButton.attr("changePercent", percentNumber)
-    // }
+      newButton.attr("value", stocksList[i].company + "..." + response.changePercent + "%");
     $(".buttonRow").append(newButton);
-  }
+  })
 };
 
 //-------Receiving Input to make New Buttons----------------//
