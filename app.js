@@ -17,14 +17,21 @@ let validSymbol = "";
 const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
 
 //define hover effect function for stock buttons to reveal company name //
-$(document).ready(function(){
+  $(document).ready(function(){
     $(".buttonRow").on("mouseenter", ".stock-btn", function(event){
-        const companyInfo = event.target.value;
-        $(".pantalla").text(companyInfo);
+        const company = event.target.value;
+        const change = event.target.attributes.getNamedItem('change').value;
+        if(Number(change) > 0) {
+          const x =  $(`<span style="color:black;">${company}... <span style="color:springgreen; display:inline-block;">+${change}% &#x25B2</span></span>`);
+          $('.pantalla').append(x);
+          }else if(Number(change) < 0) {
+          const x =  $(`<span style="color:black;">${company}... <span style="color:coral; display:inline-block;">${change}% &#x25BC</span></span>`);
+          $('.pantalla').append(x);
+          }
       });
-    $(".stock-btn").mouseleave(function(){
-      $(".pantalla").text("");
-    });
+    $(".buttonRow").on("mouseleave", ".stock-btn", (function(){
+      $(".pantalla").empty();
+    }));
   });
 
 $.ajax({
@@ -159,6 +166,7 @@ const displayStockInfo = function() {
 const renderButtons = function() {
   //reset button list
   $(".buttonRow").empty();
+  $(".pantalla").empty();
   for (i = 0; i < stocksList.length; i++) {
     const newButton = $("<button>").addClass("btn btn-info");
     newButton.addClass("stock-btn");
@@ -168,7 +176,8 @@ const renderButtons = function() {
       url: `https://cloud.iexapis.com/stable/stock/${stocksList[i].symbol}/quote?token=${token}`,
       method: "GET"
     }).then(function(response) {
-      newButton.attr("value", response.companyName + "..." + response.changePercent + "%");
+      newButton.attr("value", response.companyName )
+      newButton.attr("change", response.changePercent);
     })
     $(".buttonRow").append(newButton);
   }
@@ -177,12 +186,12 @@ const renderButtons = function() {
 //-------Receiving Input to make New Buttons----------------//
 const addButton = function(event) {
   event.preventDefault();
-  const stockInput = $("#stockInput")
+  let stockInput = $("#stockInput")
     .val()
     .trim();
-  const upperCaseStock = stockInput.toUpperCase();
+  stockInput = stockInput.toUpperCase();
   let searchSymbol = validationList.find( //returns undefined if stock symbol absent from list, returns object if present
-    valSym => valSym.symbol === upperCaseStock
+    valSym => valSym.symbol === stockInput
   );
   $("#stockInput").val("");
   if (searchSymbol) {
@@ -196,7 +205,7 @@ const addButton = function(event) {
     $("#stockInput").val("");
     $("#stockInput").addClass("redFont");
     $(".pantalla").text(
-        `"${upperCaseStock}" is not a valid symbol`);
+        `"${stockInput}" is not a valid symbol`);
     $("#stockInput").attr
         ("placeholder", `"${stockInput}" is not a valid symbol`
       );
