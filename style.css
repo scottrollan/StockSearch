@@ -9,16 +9,47 @@ body {
 .pantalla {
     font-family: 'Orbitron', sans-serif;
     color: #c4f327;
-    text-align: center;
+    /* text-align: center; */
     width: 70%;
     min-height: 46px;
     margin: 0 15%;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 8px;
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(248, 249, 250, 0.3);
+    overflow: hidden;
+}
+
+.pantalla p {
+    line-height: 46px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    -moz-animation: ticker 10s linear infinte;
+    -webkit-aniation: ticker 10s linear infinte;
+    animation: ticker 10s linear infinite;
+}
+@-moz-keyframes ticker {
+    0% {-moz-transform: translateX(100%);}
+    100% {-moz-transform: translateX(-50%);}
+}
+@-webkit-keyframes ticker {
+    0% {-webkit-transform: translateX(100%);}
+    100% {-webkit-transform: translateX(-50%);}
+}
+@keyframes ticker {
+    0% {
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
 }
 
 .link {

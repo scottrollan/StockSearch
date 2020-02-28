@@ -14,7 +14,8 @@ token = "pk_110eba9da8c84c0e88d885292085ab63";
 //-------creating validationList[] of stock symbols available-----//////
 let validationList = [];
 let validSymbol = "";
-const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
+// const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
+const symbolQuery = `https://cloud.iexapis.com/stable/ref-data/symbols?token=${token}`;
 
 //define hover effect function for stock buttons to reveal company name //
   $(document).ready(function(){
@@ -22,10 +23,10 @@ const symbolQuery = `https://api.iextrading.com/1.0/ref-data/symbols`;
         const company = event.target.value;
         const change = event.target.attributes.getNamedItem('change').value;
         if(Number(change) > 0) {
-          const x =  $(`<span style="color:black;">${company}... <span style="color:springgreen; display:inline-block;">+${change}% &#x25B2</span></span>`);
+          const x =  $(`<p style="color:black;width: 100%;">${company}... <span style="color:springgreen; display:inline-block;">+${change}% &#x25B2</span>`);
           $('.pantalla').append(x);
           }else if(Number(change) < 0) {
-          const x =  $(`<span style="color:black;">${company}... <span style="color:coral; display:inline-block;">${change}% &#x25BC</span></span>`);
+          const x =  $(`<p style="color:black; width: 100%;">${company}... <span style="color:coral; display:inline-block;">${change}% &#x25BC</span></p>`);
           $('.pantalla').append(x);
           }
       });
